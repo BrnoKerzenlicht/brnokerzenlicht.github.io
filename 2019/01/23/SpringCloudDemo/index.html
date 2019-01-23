@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> SpringCloudDemo · Brno Kerzenlicht's Home</title><meta name="description" content="SpringCloudDemo - Brno Kerzenlicht"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico?v=2019"><link rel="stylesheet" href="/css/style.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Brno Kerzenlicht's Home"></head><body><div class="wrap"><header><h1 class="title">Brno Kerzenlicht’s Home</h1><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link" href="/" target="_self">HOME</a></li><li class="nav-list-item"><a class="nav-list-link" href="/archives/" target="_self">ARCHIVE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">SpringCloudDemo</h1><div class="post-info">Jan 23, 2019</div><div class="post-content"><p>Spring Cloud Demo项目，包含Eureka、Ribbon、Feign、Hystrix的简单使用</p>
+<a id="more"></a>
+<h2 id="模块结构"><a href="#模块结构" class="headerlink" title="模块结构"></a>模块结构</h2><h4 id="server1"><a href="#server1" class="headerlink" title="server1"></a>server1</h4><p>Eureka服务注册中心</p>
+<h4 id="provider1"><a href="#provider1" class="headerlink" title="provider1"></a>provider1</h4><p>Eureka服务提供者1，使用fastjson返回结果</p>
+<h4 id="provider2"><a href="#provider2" class="headerlink" title="provider2"></a>provider2</h4><p>Eureka服务提供者2，使用默认HttpMessageConverter返回结果</p>
+<h4 id="provider3"><a href="#provider3" class="headerlink" title="provider3"></a>provider3</h4><p>Eureka服务提供者3，使用默认HttpMessageConverter返回结果，controller层通过参数列表直接接收参数</p>
+<h4 id="model"><a href="#model" class="headerlink" title="model"></a>model</h4><p>包含自定义类的模块</p>
+<h4 id="consumer1"><a href="#consumer1" class="headerlink" title="consumer1"></a>consumer1</h4><p>服务消费者1，使用ribbon+restTemplate作的服务消费者，包含Hystrix，使用默认ribbon配置，并且配置了Hystrix Dashboard</p>
+<h4 id="consumer2"><a href="#consumer2" class="headerlink" title="consumer2"></a>consumer2</h4><p>服务消费者2，使用Feign作为服务消费者，配置使用了Hystrix、HTTP client、Ribbon</p>
+<h4 id="consumer3"><a href="#consumer3" class="headerlink" title="consumer3"></a>consumer3</h4><p>服务消费者3，使用Feign作为服务消费者，配置使用了Hystrix、Ribbon</p>
+<h4 id="turbineDemo"><a href="#turbineDemo" class="headerlink" title="turbineDemo"></a>turbineDemo</h4><p>turbine Demo，整合consumer1、consumer2、consumer3的hystrix信息，需要consumer1、consumer2、consumer3都注册到注册中心</p>
+<h4 id="zuulDemo"><a href="#zuulDemo" class="headerlink" title="zuulDemo"></a>zuulDemo</h4><p>zuul Demo,可以实现动态路由、监控、安全、认证鉴权、压力测试、金丝雀测试<a href="“金丝雀部署”是增量发布的一种类型，它的执行方式是在原有软件生产版本可用的情况下，同时部署一个新的版本。同时运行同一个软件产品的多个版本需要软件针对配置和完美自动化部署进行特别设计。[在生产中使用金丝雀部署来进行测试](http://www.infoq.com/cn/news/2013/03/canary-release-improve-quality%20%27%E5%9C%A8%E7%94%9F%E4%BA%A7%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%87%91%E4%B8%9D%E9%9B%80%E9%83%A8%E7%BD%B2%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%27)">^1</a>、审查、服务迁移、负载剪裁、静态应答处理等；实现路由时，serviceId必须是注册到注册中心的serviceId</p>
+<h4 id="test"><a href="#test" class="headerlink" title="test"></a>test</h4><p>测试模块，可以模拟发送http get请求，用于验证ribbon配置策略</p>
+<h3 id="provider、consumer信息"><a href="#provider、consumer信息" class="headerlink" title="provider、consumer信息"></a>provider、consumer信息</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">module</th>
+<th style="text-align:center">是否在server上注册</th>
+<th style="text-align:center">controller method</th>
+<th style="text-align:center">service method</th>
+<th style="text-align:center">service name</th>
+<th>hystrix配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">provider1</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">String getString(HttpServletRequest)<br>User getUser(HttpServletRequest)<br>String getUserString(HttpServletRequest)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">service-demo</td>
+<td>getUser间隔sleep1000</td>
+</tr>
+<tr>
+<td style="text-align:center">provider2</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">String getString(HttpServletRequest)<br>User getUser(HttpServletRequest)<br>String getUserString(HttpServletRequest)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">service-demo</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">provider3</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">String getString(String)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">service-demo1</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">consumer1</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">String string(HttpServletRequest)<br>User user(HttpServletRequest)<br>String userString(HttpServletRequest)<br>String getString(HttpServletRequest)<br>String discovery()</td>
+<td style="text-align:center">String DemoService.string(String)<br>User DemoService.user(String)<br>String DemoService.userString(String)<br>String DemoService.getString(String)</td>
+<td style="text-align:center">service-demo<br>service-demo<br>service-demo<br>service-demo1</td>
+<td>线程池coreSize500超时设置30000</td>
+</tr>
+<tr>
+<td style="text-align:center">consumer2</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">String string(HttpServletRequest)<br>User user(HttpServletRequest)<br>String string1(HttpServletRequest)</td>
+<td style="text-align:center">String IDemoService.getString(String)<br>User IDemoService.getUser(String)<br>String Service0Client.test(String)</td>
+<td style="text-align:center">s vice-demo<br>service-demo<br>service-demo1</td>
+<td>超时设置100</td>
+</tr>
+<tr>
+<td style="text-align:center">consumer3</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">String string(HttpServletRequest)<br>String string1(HttpServletRequest)<br>String consumer3.str(HttpServletRequest)</td>
+<td style="text-align:center">String IDemoService.getString(String)<br>String IDemo1Service.getString(String)</td>
+<td style="text-align:center">service-demo<br>service-demo1</td>
+<td>超时设置100</td>
+</tr>
+</tbody>
+</table>
+<p>源码地址：<a href="https://gitee.com/brnokerzenlicht/springclouddemo" target="_blank" rel="noopener">https://gitee.com/brnokerzenlicht/springclouddemo</a></p>
+</div></article></div></main><footer><div class="paginator"><a class="next" href="/2019/01/20/使用hexo搭建个人博客操作记录/">NEXT</a></div><div class="copyright"><p>© 2019 PEACE & LOVE</p><p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>, <a href="https://github.com/jeremyfan/hexo-theme-still" target="_blank">theme</a> by <a href="https://github.com/jeremyfan" target="_blank">jeremyfan</a>.</p></div></footer></div></body></html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 使用hexo搭建个人博客操作记录 · Brno Kerzenlicht's Home</title><meta name="description" content="使用hexo搭建个人博客操作记录 - Brno Kerzenlicht"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico?v=2019"><link rel="stylesheet" href="/css/style.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Brno Kerzenlicht's Home"></head><body><div class="wrap"><header><h1 class="title">Brno Kerzenlicht’s Home</h1><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link" href="/" target="_self">HOME</a></li><li class="nav-list-item"><a class="nav-list-link" href="/archives/" target="_self">ARCHIVE</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">使用hexo搭建个人博客操作记录</h1><div class="post-info">Jan 20, 2019</div><div class="post-content"><p>利用 github Pages + Hexo 搭建个人博客记录，内容大都来源网上教程，具体操作的时候有些和教程的不太一样，所以记录一下，以便换电脑时能记得怎么操作。</p>
+<a id="more"></a>
+<h2 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h2><p>本地安装 Git、Node.js</p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><h3 id="初始化个人博客"><a href="#初始化个人博客" class="headerlink" title="初始化个人博客"></a>初始化个人博客</h3><p>使用 Hexo 来搭建个人博客，具体操作如下：</p>
+<ol>
+<li><p>通过命令行操作安装 Hexo ，命令： <code>npm install hexo -g</code> </p>
+</li>
+<li><p>创建一个文件夹作为博客的目录（假定为 F://Hexo ），通过命令<code>hexo init</code>进行初始化</p>
+</li>
+<li><p>通过命令<code>hexo server</code>进行预览，命令执行后会有提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS F:\hexo&gt; hexo server</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+<p>这时通过浏览器访问 localhost:4000 ，就可以看到使用 Hexo 搭建的博客了</p>
+</li>
+</ol>
+<h3 id="修改博客配置"><a href="#修改博客配置" class="headerlink" title="修改博客配置"></a>修改博客配置</h3><p>初始化的博客许多内容都是默认的，这个时候通过修改配置文件的方式进行调整，配置文件路径：<code>F://Hexo/_config.yml</code></p>
+<p>主要修改了以下内容</p>
+<ul>
+<li>Site下的 title 、subtitle 、author，其余保持默认值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Brno Kerzenlicht&apos;s Home</span><br><span class="line">subtitle:</span><br><span class="line">description:</span><br><span class="line">keywords:</span><br><span class="line">author: Brno Kerzenlicht</span><br><span class="line">language:</span><br><span class="line">timezone:</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Deploy 下的相关内容</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:xxx/xxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>觉得默认的主题不好看时，可以去 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo 官网</a>挑选一个自己喜欢的主题进行替换，修改方式也比较简单</p>
+<ul>
+<li>找到主题的 github 地址，以 still 为例， github 地址是 <a href="https://github.com/JeremyFan/hexo-theme-still" target="_blank" rel="noopener">https://github.com/JeremyFan/hexo-theme-still</a></li>
+<li>将主题仓库中的内容都下载下来，什么方式都可以</li>
+<li>将下载好的主题文件放到主题目录（<code>F://Hexo/themes/still</code>）下，<code>still</code>是主题名称，里面就是主题仓库里的所有文件</li>
+<li>修改博客配置文件（就是上面的那个_config.yml）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: still</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>修改主题的配置文件，主题里面也有一些内容是需要调整的，最简单的方式也是修改配置文件，配置文件路径 <code>F://Hexo/themes/still/_config.yml</code></p>
+</li>
+<li><p>如果发现有些内容还需要调整的话，就只能去主题的具体文件里去修改了</p>
+</li>
+<li>使用主题的时候最好看一下主题仓库中的 README，最开始使用的时候发现不好用，后面才发现是因为没有安装 <code>pug renderer</code> (安装命令 <code>npm install hexo-render-pug --save</code>)</li>
+</ul>
+<h2 id="同步到GitHub"><a href="#同步到GitHub" class="headerlink" title="同步到GitHub"></a>同步到GitHub</h2><p>通过上面的步骤就可以在本地看到一个自己还算满意的博客了，剩下的内容就是同步到 github 了。具体操作如下：</p>
+<ul>
+<li><p>创建一个仓库，要求仓库名称为 xxx.github.io ，如果仓库名称不符合这个约定，也可以搭建，但是访问时的路径会是 <a href="https://xxx.github.io/仓库名，而不是" target="_blank" rel="noopener">https://xxx.github.io/仓库名，而不是</a> <a href="https://xxx.github.io" target="_blank" rel="noopener">https://xxx.github.io</a> ；而且使用 hexo 生成的静态文件在获取资源时会找不到相关 css 等文件，所以仓库名还是按约定设置会比较好</p>
+</li>
+<li><p>在博客目录（<code>F://Hexo</code>）下创建一个本地 git 仓库，并关联到 github 远程仓库</p>
+</li>
+<li><p>通过 Hexo 生成静态文件 <code>hexo generate</code></p>
+</li>
+<li><p>通过 Hexo 进行部署，命令 <code>hexo deploy</code></p>
+</li>
+<li><p>在 github 仓库页面中，选择 <code>Settings</code>，找到 <code>GitHub Pages</code>部分，点击<code>Source</code>下拉框，选择<code>master branch</code> ，保存之后就会看到页面提示，可以通过浏览器访问 <a href="https://xxx.github.io/" target="_blank" rel="noopener">https://xxx.github.io/</a> 查看博客内容了</p>
+</li>
+</ul>
+<h2 id="写一篇博客试试"><a href="#写一篇博客试试" class="headerlink" title="写一篇博客试试"></a>写一篇博客试试</h2><p>已经搭建完博客了，这个时候可以试着写一篇博客了</p>
+<ul>
+<li>通过 Hexo 创建一篇新的博客，命令：<code>hexo new [title]</code> ，title 就是博客的标题</li>
+<li>在博客目录中找到生成的文件 <code>F:\hexo\source\_posts\[title].md</code>，直接编辑这个文件就可以了，发布之前还是可以通过 Hexo 先预览看下的，执行完 <code>hexo server</code>之后，可以实时看到新写的文章，调整文章内容保持后，刷新页面就可以了</li>
+</ul>
+<h2 id="附录-amp-小工具"><a href="#附录-amp-小工具" class="headerlink" title="附录&amp;小工具"></a>附录&amp;小工具</h2><ol>
+<li><p>Hexo 官网    </p>
+<p><a href="https://hexo.io" target="_blank" rel="noopener">https://hexo.io</a></p>
+</li>
+<li><p>GitHub Pages</p>
+<p><a href="https://pages.github.com/" target="_blank" rel="noopener">https://pages.github.com/</a></p>
+</li>
+<li><p>Typora：一个觉得很好用的本地 markdown 编辑器</p>
+<p><a href="https://typora.io/" target="_blank" rel="noopener">https://typora.io/</a></p>
+</li>
+<li><p>在线图床：</p>
+<p><a href="https://sm.ms/" target="_blank" rel="noopener">https://sm.ms/</a></p>
+</li>
+<li><p>微博图床：chrome 插件，需要登录微博之后才能使用</p>
+<p><a href="https://chrome.google.com/webstore/detail/fdfdnfpdplfbbnemmmoklbfjbhecpnhf" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/fdfdnfpdplfbbnemmmoklbfjbhecpnhf</a></p>
+</li>
+</ol>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2019/01/23/SpringCloudDemo/">PREV</a><a class="next" href="/2019/01/19/hello-world/">NEXT</a></div><div class="copyright"><p>© 2019 PEACE & LOVE</p><p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>, <a href="https://github.com/jeremyfan/hexo-theme-still" target="_blank">theme</a> by <a href="https://github.com/jeremyfan" target="_blank">jeremyfan</a>.</p></div></footer></div></body></html>
